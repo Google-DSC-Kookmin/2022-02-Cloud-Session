@@ -1,5 +1,7 @@
 FROM node:16
 
+# 이 디렉토리에서 도커 빌드를 하면 도커파일이 돌아간다.
+
 # 앱 디렉토리 생성
 WORKDIR /usr/src/app
 
