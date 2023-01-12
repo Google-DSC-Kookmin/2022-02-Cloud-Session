@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
         res.send(error);
       }
       // return current server ip address
-      res.send(`Hello World! (from ${ip.address()})`);
+      res.send(`Hello World! (ip: ${ip.address()})`);
     });
 })
 
