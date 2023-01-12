@@ -43,7 +43,7 @@ app.get('/name/:name', (req, res) => {
       }
 
       // send query result as json
-      res.send('success');
+      res.send('insert success!');
     });
 })
 
