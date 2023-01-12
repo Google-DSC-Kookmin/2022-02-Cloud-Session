@@ -1,4 +1,4 @@
-name: ci
+name: cicd
 
 on:
   push:
@@ -32,3 +32,15 @@ jobs:
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+    
+    - name: Download task definition
+      run: |
+        aws ecs describe-task-definition --task-definition first-run-task-definition --query taskDefinition > task-definition.json
+
+    - name: Deploy Amazon ECS task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ steps.task-def.outputs.task-definition }}
+        service: express-service
+        cluster: final-assn-cluster
+        wait-for-service-stability: true
